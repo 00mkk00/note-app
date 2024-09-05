@@ -4,9 +4,10 @@ import 'package:note_app/constants.dart';
 import 'package:note_app/views/notes_view.dart';
 
 void main() async {
-  runApp(const NoteApp());
   await Hive.initFlutter();
   await Hive.openBox(kNoteBox);
+  runApp(const NoteApp());
+  
 }
 
 class NoteApp extends StatelessWidget {
