@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:note_app/cubits/cubit/add_note_cubit.dart';
 import 'package:note_app/widgets/add_note_form.dart';
 
@@ -26,9 +25,12 @@ class AddNoteModalSheet extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return ModalProgressHUD(
-                  inAsyncCall: state is AddNoteLoading ? true : false,
-                  child: const AddNoteForm());
+              return AbsorbPointer(
+                absorbing: state is AddNoteLoading ? true : false,
+                child: const SingleChildScrollView(
+                  child: AddNoteForm(),
+                ),
+              );
             },
           ),
         ),
